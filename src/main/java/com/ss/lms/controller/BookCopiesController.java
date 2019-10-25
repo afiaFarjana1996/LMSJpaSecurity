@@ -21,7 +21,7 @@ import com.ss.lms.service.BookCopiesService;
 
 
 @RestController
-@RequestMapping("lms/")
+@RequestMapping("lms/librarian/")
 @Produces({"application/xml", "application/json"})
 @Consumes({"application/xml", "application/json"})
 public class BookCopiesController {
@@ -29,20 +29,15 @@ public class BookCopiesController {
 	@Autowired
 	BookCopiesService bookCopiesService;
 	
-	@GetMapping(path="library-branch/id/{libraryBranchId}/book-list",produces = {"application/json","application/xml"})
-	public ResponseEntity<List<BookCopies>> getBookListByBranchId(@PathVariable int libraryBranchId){
+	@GetMapping(path="library-branch/id/{libraryBranchId}/book-list")
+	public ResponseEntity<?> getBookListByBranchId(@PathVariable int libraryBranchId){
 		
 		return bookCopiesService.getBookListByBranchId(libraryBranchId);
 		
 	}
 	
-	@RequestMapping(path="library-branch/id/{libraryBranchId}/book/{bookId}",produces={"application/json","application/xml"})
-	public ResponseEntity<BookCopies> getBookCopies(@PathVariable int libraryBranchId,@PathVariable int bookId ){
-		return bookCopiesService.getBookCopies(libraryBranchId, bookId);
-	}
 	
-	
-	@PutMapping(path="copyAddition",produces = {"application/json","application/xml"}, consumes= {"application/json","application/xml"})
+	@PutMapping(path="copyAddition")
 	public ResponseEntity<String> updateNoOfCopies(@RequestBody ReadBookCopies readBookCopies) {
 		
 		return bookCopiesService.updateNoOfCopies(readBookCopies.getBranchId(), readBookCopies.getBookId(), readBookCopies.getNoOfCopies());

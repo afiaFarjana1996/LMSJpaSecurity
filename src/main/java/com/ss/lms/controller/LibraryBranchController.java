@@ -20,7 +20,7 @@ import com.ss.lms.entity.LibraryBranch;
 import com.ss.lms.service.LibraryBranchService;
 
 @RestController
-@RequestMapping("lms/library-branch/")
+@RequestMapping("lms/librarian/")
 @Produces({"application/xml", "application/json"})
 @Consumes({"application/xml", "application/json"})
 public class LibraryBranchController {
@@ -34,15 +34,9 @@ public class LibraryBranchController {
 	}
 	
 	@GetMapping(path="id/{libraryBranchId}")
-	public ResponseEntity<LibraryBranch> getLibraryBranchById(@PathVariable int libraryBranchId){
-		LibraryBranch libraryBranch = libraryBranchService.getLibraryBranchById(libraryBranchId);
+	public ResponseEntity<?> getLibraryBranchById(@PathVariable int libraryBranchId){
+		return libraryBranchService.getLibraryBranchById(libraryBranchId);
 		
-		if(libraryBranch.getBranchId()!=0) {
-			return new ResponseEntity<LibraryBranch>(libraryBranch,HttpStatus.FOUND);
-		}
-		else {
-			return new ResponseEntity<LibraryBranch>(HttpStatus.NOT_FOUND);
-		}
 		
 	}
 	

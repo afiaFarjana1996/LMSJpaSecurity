@@ -2,6 +2,9 @@ package com.ss.lms.service;
 
 import java.util.List;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +32,29 @@ public class LibraryBranchService {
 	@Autowired
 	LibraryBranchDao libraryBranchDao;
 	
+	
 	public List<LibraryBranch> getAllLibraryBranch() {
-		return libraryBranchDao.getAllLibraryBranch();
+		return libraryBranchDao.findAll();
 	}
 	
-	public LibraryBranch getLibraryBranchById(Integer libraryBranchId) {
-		return libraryBranchDao.getLibraryBranchById(libraryBranchId);
+	public ResponseEntity<?> getLibraryBranchById(Integer libraryBranchId) {
+		Optional<LibraryBranch> libraryBranch = libraryBranchDao.findById(libraryBranchId);
+		
+		if(!libraryBranch.isPresent() ){
+			return new ResponseEntity<String>("Branch doesn't exist.",HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<LibraryBranch>(libraryBranch.get(),HttpStatus.FOUND);
+		}
+		
+	}
+	
+	public boolean doesLibraryBranchExist(LibraryBranch libraryBranch) {
+		return libraryBranchDao.existsById(libraryBranch.getBranchId());
 	}
 	
 	public ResponseEntity<String> updateLibraryBranch(LibraryBranch libraryBranch) {
-		if(libraryBranchDao.doesLibraryBranchExist(libraryBranch)) {
-			libraryBranchDao.updateLibraryBranch(libraryBranch);
+		if(doesLibraryBranchExist(libraryBranch)) {
+			libraryBranchDao.save(libraryBranch);
 			return new ResponseEntity<>("Library Branch Successfully updated.",HttpStatus.ACCEPTED);
 		}
 		else {
