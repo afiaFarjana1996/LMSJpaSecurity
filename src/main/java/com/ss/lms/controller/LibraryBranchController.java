@@ -47,5 +47,10 @@ public class LibraryBranchController {
 		
 	}
 	
+	@GetMapping(path="health")
+	public HttpStatus isHealthy() {
+		return HttpStatus.OK;
+	}
+	
 	
 }
