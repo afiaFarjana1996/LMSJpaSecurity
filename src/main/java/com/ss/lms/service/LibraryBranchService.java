@@ -50,13 +50,13 @@ public class LibraryBranchService {
 		return libraryBranchDao.existsById(libraryBranch.getBranchId());
 	}
 	
-	public ResponseEntity<String> updateLibraryBranch(LibraryBranch libraryBranch) {
+	public ResponseEntity<LibraryBranch> updateLibraryBranch(LibraryBranch libraryBranch) {
 		if(doesLibraryBranchExist(libraryBranch)==true) {
 			libraryBranchDao.save(libraryBranch);
-			return new ResponseEntity<>("Library Branch Successfully updated.",HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(libraryBranch,HttpStatus.ACCEPTED);
 		}
 		else {
-			return new ResponseEntity<>("Library Branch doesn't exist.",HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(libraryBranch,HttpStatus.NOT_FOUND);
 		}
 		
 	}
