@@ -1,9 +1,7 @@
 package com.ss.lms.service;
 
 import java.util.List;
-
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,7 +51,7 @@ public class LibraryBranchService {
 	}
 	
 	public ResponseEntity<String> updateLibraryBranch(LibraryBranch libraryBranch) {
-		if(doesLibraryBranchExist(libraryBranch)) {
+		if(doesLibraryBranchExist(libraryBranch)==true) {
 			libraryBranchDao.save(libraryBranch);
 			return new ResponseEntity<>("Library Branch Successfully updated.",HttpStatus.ACCEPTED);
 		}

@@ -1,6 +1,6 @@
 package com.ss.lms.controller;
 
-import java.util.List;
+
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ss.lms.entity.BookCopies;
 import com.ss.lms.entity.ReadBookCopies;
 import com.ss.lms.service.BookCopiesService;
 
