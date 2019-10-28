@@ -41,7 +41,7 @@ public class LibraryBranchController {
 	}
 	
 	@PutMapping(path="branchChange")
-	public ResponseEntity<String> updateLibraryBranch(@RequestBody LibraryBranch libraryBranch) {
+	public ResponseEntity<LibraryBranch> updateLibraryBranch(@RequestBody LibraryBranch libraryBranch) {
 		
 		return libraryBranchService.updateLibraryBranch(libraryBranch);
 		
