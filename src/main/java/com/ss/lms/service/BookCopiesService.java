@@ -79,7 +79,7 @@ public class BookCopiesService {
 			else {
 				BookCopies bookCopies = new BookCopies(bookCopiesComposite,noOfCopies);
 				  bookCopiesDao.save(bookCopies);
-					return new ResponseEntity<>("update successfull.",HttpStatus.ACCEPTED);
+					return new ResponseEntity<>("update successfull.",HttpStatus.NO_CONTENT);
 			}
 		}
 	}
