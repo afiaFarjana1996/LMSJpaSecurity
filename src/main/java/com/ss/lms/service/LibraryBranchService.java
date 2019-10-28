@@ -53,7 +53,7 @@ public class LibraryBranchService {
 	public ResponseEntity<LibraryBranch> updateLibraryBranch(LibraryBranch libraryBranch) {
 		if(doesLibraryBranchExist(libraryBranch)==true) {
 			libraryBranchDao.save(libraryBranch);
-			return new ResponseEntity<>(libraryBranch,HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(libraryBranch,HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<>(libraryBranch,HttpStatus.NOT_FOUND);
