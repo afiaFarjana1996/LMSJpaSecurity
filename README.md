@@ -1,1 +1,1 @@
-# LMSJpaSecurity
+# LMS Librarian Part
